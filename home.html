@@ -71,6 +71,7 @@ body{
   border-radius:15px;
   font-size:17px;
   font-weight:bold;
+  cursor:pointer;
 }
 
 .buy{
@@ -86,8 +87,10 @@ body{
 .row{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:14px 0;
   border-bottom:1px solid #eee;
+  cursor:pointer;
 }
 
 .row:last-child{
@@ -118,6 +121,7 @@ nav button{
   background:none;
   color:#777;
   font-size:12px;
+  cursor:pointer;
 }
 
 .active{
@@ -132,6 +136,7 @@ nav button{
 <div class="app">
 
   <div class="header">
+
     <div class="logo">QUICK PAY</div>
 
     <div class="welcome">
@@ -145,87 +150,134 @@ nav button{
     <div class="rate">
       USDT / INR: ₹90.00
     </div>
+
   </div>
 
+
+  <!-- BUY / SELL -->
+
   <div class="card">
+
     <h3>Trade</h3>
 
     <div class="actions">
 
-      <button class="action buy"
-  onclick="window.location.href='buy.html'">
-  🟢 BUY
-</button>
-      
-      <button class="action sell"
-  onclick="window.location.href='sell.html'">
-  🔴 SELL
-</button>
+      <button
+        class="action buy"
+        onclick="location.href='buy.html'">
+        🟢 BUY
+      </button>
+
+      <button
+        class="action sell"
+        onclick="location.href='sell.html'">
+        🔴 SELL
+      </button>
 
     </div>
+
   </div>
+
+
+  <!-- RECENT ORDERS -->
 
   <div class="card">
 
     <h3>Recent Orders</h3>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='orders.html'">
+
       <span>Buy • 100 USDT</span>
       <span class="status">Pending</span>
+
     </div>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='orders.html'">
+
       <span>Sell • 50 USDT</span>
       <span class="status">Completed</span>
+
     </div>
 
   </div>
+
+
+  <!-- QUICK ACCESS -->
 
   <div class="card">
 
     <h3>Quick Access</h3>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='upi.html'">
+
       <span>💳 UPI</span>
       <span>›</span>
+
     </div>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='orders.html'">
+
       <span>📋 Orders</span>
       <span>›</span>
+
     </div>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='team.html'">
+
       <span>👥 Team</span>
       <span>›</span>
+
     </div>
 
-    <div class="row">
+    <div
+      class="row"
+      onclick="location.href='my.html'">
+
       <span>👤 My Account</span>
       <span>›</span>
+
     </div>
 
   </div>
 
+
+  <!-- BOTTOM NAVIGATION -->
+
   <nav>
 
-    <button class="active">
+    <button
+      class="active"
+      onclick="location.href='home.html'">
       🏠<br>Home
     </button>
 
-    <button>
+    <button
+      onclick="location.href='orders.html'">
       📋<br>Orders
     </button>
 
-    <button>
+    <button
+      onclick="location.href='upi.html'">
       💳<br>UPI
     </button>
 
-    <button>
+    <button
+      onclick="location.href='team.html'">
       👥<br>Team
     </button>
 
-    <button>
+    <button
+      onclick="location.href='my.html'">
       👤<br>My
     </button>
 
