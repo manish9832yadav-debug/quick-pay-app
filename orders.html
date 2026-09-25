@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quick Pay - Orders</title>
+<title>Quick Pay - Transactions</title>
 
 <style>
 *{box-sizing:border-box}
@@ -22,8 +22,24 @@ body{
   padding:20px;
 }
 
+.top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back{
+  border:0;
+  background:white;
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:20px;
+}
+
 h1{
-  margin:10px 0 20px;
+  margin:0;
+  font-size:23px;
 }
 
 .card{
@@ -34,23 +50,19 @@ h1{
   box-shadow:0 5px 18px rgba(0,0,0,.07);
 }
 
-.top{
+.toprow{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
 .type{
-  font-weight:bold;
-  font-size:18px;
-}
-
-.deposit{
   color:#1769ff;
+  font-weight:bold;
 }
 
 .amount{
-  font-size:24px;
+  font-size:25px;
   font-weight:bold;
   margin:12px 0;
 }
@@ -58,9 +70,9 @@ h1{
 .row{
   display:flex;
   justify-content:space-between;
-  gap:10px;
-  padding:8px 0;
-  color:#666;
+  gap:12px;
+  padding:7px 0;
+  color:#777;
 }
 
 .value{
@@ -81,9 +93,10 @@ h1{
   font-weight:bold;
 }
 
-.completed{
-  background:#e8f7ee;
-  color:#16834b;
+.empty{
+  text-align:center;
+  padding:40px 15px;
+  color:#777;
 }
 </style>
 </head>
@@ -92,56 +105,85 @@ h1{
 
 <div class="app">
 
-<h1>📋 Transactions</h1>
-
-<div class="card">
-
   <div class="top">
-    <div class="type deposit">💰 DEPOSIT</div>
-    <div>#QP1001</div>
+    <button class="back" onclick="history.back()">‹</button>
+    <h1>Transactions</h1>
   </div>
 
-  <div class="amount">₹1,000.00</div>
-
-  <div class="row">
-    <span>Payment Method</span>
-    <span class="value">Bank Transfer</span>
-  </div>
-
-  <div class="row">
-    <span>UTR</span>
-    <span class="value">Not Submitted</span>
-  </div>
-
-  <span class="status">Payment Pending</span>
+  <div id="transactions"></div>
 
 </div>
 
+<script>
 
-<div class="card">
+function loadTransactions(){
 
-  <div class="top">
-    <div class="type deposit">💰 DEPOSIT</div>
-    <div>#QP1000</div>
-  </div>
+  const box =
+    document.getElementById("transactions");
 
-  <div class="amount">₹5,000.00</div>
+  const transactions =
+    JSON.parse(
+      localStorage.getItem("transactions") || "[]"
+    );
 
-  <div class="row">
-    <span>Payment Method</span>
-    <span class="value">Bank Transfer</span>
-  </div>
+  if(transactions.length === 0){
 
-  <div class="row">
-    <span>UTR</span>
-    <span class="value">Demo Reference</span>
-  </div>
+    box.innerHTML = `
+      <div class="card empty">
+        No transactions yet
+      </div>
+    `;
 
-  <span class="status completed">Completed</span>
+    return;
+  }
 
-</div>
+  box.innerHTML = "";
 
-</div>
+  transactions.forEach(function(tx){
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="toprow">
+        <div class="type">💰 ${tx.type}</div>
+        <div>${tx.id}</div>
+      </div>
+
+      <div class="amount">
+        ₹${Number(tx.amount).toFixed(2)}
+      </div>
+
+      <div class="row">
+        <span>Method</span>
+        <span class="value">${tx.method}</span>
+      </div>
+
+      <div class="row">
+        <span>UTR</span>
+        <span class="value">${tx.utr}</span>
+      </div>
+
+      <div class="row">
+        <span>Date</span>
+        <span class="value">${tx.date}</span>
+      </div>
+
+      <span class="status">
+        ${tx.status}
+      </span>
+    `;
+
+    box.appendChild(card);
+
+  });
+
+}
+
+loadTransactions();
+
+</script>
 
 </body>
 </html>
