@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Pay - Orders</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+}
+
+.app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
+}
+
+h1{
+  margin:10px 0 20px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-bottom:14px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.type{
+  font-weight:bold;
+  font-size:18px;
+}
+
+.buy{
+  color:#1769ff;
+}
+
+.sell{
+  color:#e53935;
+}
+
+.amount{
+  font-size:22px;
+  font-weight:bold;
+  margin:12px 0;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:7px 0;
+  color:#666;
+}
+
+.status{
+  display:inline-block;
+  margin-top:10px;
+  padding:7px 11px;
+  border-radius:20px;
+  background:#fff3cd;
+  color:#9a6b00;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.completed{
+  background:#e8f7ee;
+  color:#16834b;
+}
+
+.cancelled{
+  background:#ffecec;
+  color:#d32f2f;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<h1>📋 Orders</h1>
+
+<div class="card">
+
+  <div class="top">
+    <div class="type buy">🟢 BUY</div>
+    <div>#QP1001</div>
+  </div>
+
+  <div class="amount">100 USDT</div>
+
+  <div class="row">
+    <span>Rate</span>
+    <b>₹90.00</b>
+  </div>
+
+  <div class="row">
+    <span>Total</span>
+    <b>₹9,000.00</b>
+  </div>
+
+  <span class="status">Payment Pending</span>
+
+</div>
+
+
+<div class="card">
+
+  <div class="top">
+    <div class="type sell">🔴 SELL</div>
+    <div>#QP1000</div>
+  </div>
+
+  <div class="amount">50 USDT</div>
+
+  <div class="row">
+    <span>Rate</span>
+    <b>₹90.00</b>
+  </div>
+
+  <div class="row">
+    <span>Total</span>
+    <b>₹4,500.00</b>
+  </div>
+
+  <span class="status completed">Completed</span>
+
+</div>
+
+
+<div class="card">
+
+  <div class="top">
+    <div class="type buy">🟢 BUY</div>
+    <div>#QP0998</div>
+  </div>
+
+  <div class="amount">25 USDT</div>
+
+  <div class="row">
+    <span>Rate</span>
+    <b>₹90.00</b>
+  </div>
+
+  <div class="row">
+    <span>Total</span>
+    <b>₹2,250.00</b>
+  </div>
+
+  <span class="status cancelled">Cancelled</span>
+
+</div>
+
+</div>
+
+</body>
+</html>
