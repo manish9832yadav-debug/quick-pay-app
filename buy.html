@@ -173,11 +173,11 @@ button{
 
   <div class="card">
 
-    <h3>After Bank Transfer</h3>
+    <h3>Payment Details</h3>
 
     <p class="note">
-      Payment complete karne ke baad UTR / transaction reference
-      number submit karein.
+      Bank transfer complete karne ke baad UTR /
+      transaction reference number submit karein.
     </p>
 
     <label>UTR / Transaction ID</label>
@@ -185,7 +185,7 @@ button{
     <input
       id="utr"
       type="text"
-      placeholder="Enter UTR / transaction ID"
+      placeholder="Enter UTR / Transaction ID"
     >
 
     <button onclick="submitPayment()">
@@ -207,6 +207,7 @@ function updateAmount(){
     "₹" + amount.toFixed(2);
 }
 
+
 function submitPayment(){
 
   const amount =
@@ -215,23 +216,62 @@ function submitPayment(){
   const utr =
     document.getElementById("utr").value.trim();
 
+
   if(amount <= 0){
     alert("Please enter deposit amount");
     return;
   }
+
 
   if(!utr){
     alert("Please enter UTR / Transaction ID");
     return;
   }
 
+
+  const transaction = {
+
+    id: "QP" + Date.now(),
+
+    type: "DEPOSIT",
+
+    amount: amount,
+
+    method: "Bank Transfer",
+
+    utr: utr,
+
+    status: "Payment Pending",
+
+    date: new Date().toLocaleString()
+
+  };
+
+
+  const transactions =
+    JSON.parse(
+      localStorage.getItem("transactions") || "[]"
+    );
+
+
+  transactions.unshift(transaction);
+
+
+  localStorage.setItem(
+    "transactions",
+    JSON.stringify(transactions)
+  );
+
+
   alert(
-    "Deposit submitted!\n\n" +
+    "Deposit submitted successfully!\n\n" +
     "Amount: ₹" + amount.toFixed(2) +
     "\nStatus: Payment Pending"
   );
 
+
   window.location.href = "orders.html";
+
 }
 
 </script>
