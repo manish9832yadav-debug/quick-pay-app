@@ -50,17 +50,32 @@ body{
   box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:17px;
+}
+
 .amount{
   font-size:30px;
   font-weight:bold;
   color:#1769ff;
-  margin:8px 0 20px;
+  margin:10px 0 20px;
 }
 
 .bank{
   background:#f4f7ff;
   padding:15px;
   border-radius:15px;
+  margin-top:18px;
 }
 
 .row{
@@ -85,35 +100,15 @@ body{
   word-break:break-all;
 }
 
-.copy{
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border:0;
-  border-radius:11px;
-  background:#1769ff;
-  color:white;
-  font-weight:bold;
-}
-
-input{
+button{
   width:100%;
   padding:15px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  margin-top:8px;
-}
-
-.submit{
-  width:100%;
-  padding:16px;
-  margin-top:18px;
+  margin-top:15px;
   border:0;
   border-radius:12px;
   background:#1769ff;
   color:white;
-  font-size:17px;
+  font-size:16px;
   font-weight:bold;
 }
 
@@ -136,10 +131,18 @@ input{
 
   <div class="card">
 
-    <div>Amount to Pay</div>
+    <label>Enter Deposit Amount</label>
+
+    <input
+      id="amountInput"
+      type="number"
+      min="1"
+      placeholder="Enter amount"
+      oninput="updateAmount()"
+    >
 
     <div class="amount" id="amount">
-      ₹1,000.00
+      ₹0.00
     </div>
 
     <div class="bank">
@@ -166,20 +169,15 @@ input{
 
     </div>
 
-    <button class="copy" onclick="copyDetails()">
-      Copy Bank Details
-    </button>
-
   </div>
-
 
   <div class="card">
 
-    <h3>After Payment</h3>
+    <h3>After Bank Transfer</h3>
 
     <p class="note">
-      Bank transfer complete karne ke baad apna UTR /
-      transaction reference number yahan submit karein.
+      Payment complete karne ke baad UTR / transaction reference
+      number submit karein.
     </p>
 
     <label>UTR / Transaction ID</label>
@@ -190,7 +188,7 @@ input{
       placeholder="Enter UTR / transaction ID"
     >
 
-    <button class="submit" onclick="submitPayment()">
+    <button onclick="submitPayment()">
       Submit Payment
     </button>
 
@@ -200,25 +198,27 @@ input{
 
 <script>
 
-function copyDetails(){
+function updateAmount(){
 
-  const details =
-    "Bank: YOUR BANK\n" +
-    "Account Holder: YOUR NAME\n" +
-    "Account Number: XXXXXXXXXXXX\n" +
-    "IFSC: XXXXXXXXXXX";
+  const amount =
+    Number(document.getElementById("amountInput").value) || 0;
 
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(details);
-  }
-
-  alert("Bank details copied");
+  document.getElementById("amount").innerText =
+    "₹" + amount.toFixed(2);
 }
 
 function submitPayment(){
 
+  const amount =
+    Number(document.getElementById("amountInput").value) || 0;
+
   const utr =
     document.getElementById("utr").value.trim();
+
+  if(amount <= 0){
+    alert("Please enter deposit amount");
+    return;
+  }
 
   if(!utr){
     alert("Please enter UTR / Transaction ID");
@@ -226,11 +226,12 @@ function submitPayment(){
   }
 
   alert(
-    "Payment submitted for verification.\n\n" +
-    "Status: Pending"
+    "Deposit submitted!\n\n" +
+    "Amount: ₹" + amount.toFixed(2) +
+    "\nStatus: Payment Pending"
   );
 
-  window.location.href="orders.html";
+  window.location.href = "orders.html";
 }
 
 </script>
