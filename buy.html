@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Pay - Buy</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+}
+
+.app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back{
+  border:0;
+  background:white;
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:20px;
+}
+
+.title{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  margin-bottom:15px;
+}
+
+.rate{
+  color:#1769ff;
+  font-weight:bold;
+}
+
+label{
+  display:block;
+  margin:18px 0 8px;
+  font-weight:bold;
+}
+
+input,select{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+}
+
+.summary{
+  background:#f5f7fb;
+  padding:15px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+}
+
+.confirm{
+  width:100%;
+  padding:16px;
+  margin-top:20px;
+  border:0;
+  border-radius:13px;
+  background:#1769ff;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="top">
+    <button class="back" onclick="history.back()">‹</button>
+    <div class="title">Buy USDT</div>
+  </div>
+
+  <div class="card">
+
+    <div>
+      Current Rate
+      <div class="rate">₹90.00 / USDT</div>
+    </div>
+
+    <label>USDT Amount</label>
+
+    <input
+      id="usdt"
+      type="number"
+      placeholder="Enter USDT amount"
+      oninput="calculate()"
+    >
+
+    <label>Payment Method</label>
+
+    <select>
+      <option>UPI</option>
+      <option>Demo Wallet</option>
+    </select>
+
+    <div class="summary">
+
+      <div class="row">
+        <span>USDT</span>
+        <b id="usdtShow">0</b>
+      </div>
+
+      <div class="row">
+        <span>Rate</span>
+        <b>₹90.00</b>
+      </div>
+
+      <div class="row">
+        <span>Total</span>
+        <b id="total">₹0.00</b>
+      </div>
+
+    </div>
+
+    <button class="confirm" onclick="confirmBuy()">
+      Confirm Buy
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+  let usdt =
+    Number(document.getElementById("usdt").value) || 0;
+
+  let total = usdt * 90;
+
+  document.getElementById("usdtShow").innerText =
+    usdt.toFixed(2);
+
+  document.getElementById("total").innerText =
+    "₹" + total.toFixed(2);
+}
+
+function confirmBuy(){
+
+  let usdt =
+    Number(document.getElementById("usdt").value) || 0;
+
+  if(usdt <= 0){
+    alert("Please enter USDT amount");
+    return;
+  }
+
+  alert(
+    "Demo Buy Order Created\n" +
+    usdt.toFixed(2) +
+    " USDT"
+  );
+}
+
+</script>
+
+</body>
+</html>
