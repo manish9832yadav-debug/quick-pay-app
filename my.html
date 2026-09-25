@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Pay - My Account</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+}
+.app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
+}
+.profile{
+  background:linear-gradient(135deg,#1769ff,#5d8cff);
+  color:white;
+  padding:24px;
+  border-radius:22px;
+  text-align:center;
+}
+.avatar{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:50%;
+  background:white;
+  color:#1769ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:bold;
+}
+.name{
+  font-size:22px;
+  font-weight:bold;
+  margin-top:12px;
+}
+.card{
+  background:white;
+  padding:8px 18px;
+  border-radius:18px;
+  margin-top:15px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:17px 0;
+  border-bottom:1px solid #eee;
+}
+.row:last-child{
+  border-bottom:0;
+}
+.arrow{
+  color:#999;
+  font-size:20px;
+}
+.logout{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+  border:0;
+  border-radius:12px;
+  background:#ffecec;
+  color:#d32f2f;
+  font-size:16px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="profile">
+    <div class="avatar">Q</div>
+    <div class="name">Quick Pay User</div>
+    <div>Demo Account</div>
+  </div>
+
+  <div class="card">
+
+    <div class="row">
+      <span>👤 Profile</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="row">
+      <span>🔐 Security</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="row">
+      <span>💳 Payment Methods</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="row">
+      <span>🔔 Notifications</span>
+      <span class="arrow">›</span>
+    </div>
+
+    <div class="row">
+      <span>📄 Terms & Privacy</span>
+      <span class="arrow">›</span>
+    </div>
+
+  </div>
+
+  <button class="logout" onclick="logout()">
+    Log Out
+  </button>
+
+</div>
+
+<script>
+function logout(){
+  alert("Demo logout");
+}
+</script>
+
+</body>
+</html>
