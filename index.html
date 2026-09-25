@@ -1,16 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quick Pay</title>
-</head>
-<body>
-  <h1>QUICK PAY</h1>
-  <p>Welcome Back</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Pay</title>
 
-  <input type="tel" placeholder="Mobile Number">
-  <br><br>
-  <button>Continue</button>
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7ff;
+}
+.container{
+  max-width:420px;
+  margin:auto;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+.card{
+  width:100%;
+  background:white;
+  padding:30px 24px;
+  border-radius:24px;
+  box-shadow:0 8px 30px #00000015;
+}
+.logo{
+  text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  color:#1769ff;
+}
+.subtitle{
+  text-align:center;
+  color:#777;
+  margin-bottom:30px;
+}
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+input{
+  width:100%;
+  padding:15px;
+  box-sizing:border-box;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+}
+button{
+  width:100%;
+  margin-top:20px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#1769ff;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+.secure{
+  text-align:center;
+  color:#888;
+  font-size:13px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <div class="logo">QUICK PAY</div>
+
+    <p class="subtitle">Welcome Back 👋</p>
+
+    <label>Mobile Number</label>
+
+    <input
+      type="tel"
+      placeholder="+91 Enter mobile number"
+      maxlength="10"
+    >
+
+    <button>Continue</button>
+
+    <div class="secure">
+      🔒 Secure Login
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
