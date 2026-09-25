@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Pay - Home</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+}
+
+.app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:85px;
+  background:#fff;
+}
+
+.header{
+  padding:25px 20px;
+  color:white;
+  background:linear-gradient(135deg,#1769ff,#5d8cff);
+  border-radius:0 0 25px 25px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.welcome{
+  margin-top:22px;
+  opacity:.85;
+}
+
+.balance{
+  font-size:32px;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+.rate{
+  margin-top:8px;
+  font-size:14px;
+}
+
+.card{
+  margin:15px;
+  padding:18px;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.action{
+  padding:18px;
+  border:0;
+  border-radius:15px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.buy{
+  background:#eaf2ff;
+  color:#1769ff;
+}
+
+.sell{
+  background:#fff0f0;
+  color:#e53935;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.status{
+  color:#1769ff;
+  font-weight:bold;
+}
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:430px;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 4px;
+  background:white;
+  border-top:1px solid #eee;
+}
+
+nav button{
+  border:0;
+  background:none;
+  color:#777;
+  font-size:12px;
+}
+
+.active{
+  color:#1769ff!important;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <div class="logo">QUICK PAY</div>
+
+    <div class="welcome">
+      Welcome back 👋
+    </div>
+
+    <div class="balance">
+      ₹10,000.00
+    </div>
+
+    <div class="rate">
+      USDT / INR: ₹90.00
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Trade</h3>
+
+    <div class="actions">
+
+      <button class="action buy"
+        onclick="alert('Demo Buy screen')">
+        🟢 BUY
+      </button>
+
+      <button class="action sell"
+        onclick="alert('Demo Sell screen')">
+        🔴 SELL
+      </button>
+
+    </div>
+  </div>
+
+  <div class="card">
+
+    <h3>Recent Orders</h3>
+
+    <div class="row">
+      <span>Buy • 100 USDT</span>
+      <span class="status">Pending</span>
+    </div>
+
+    <div class="row">
+      <span>Sell • 50 USDT</span>
+      <span class="status">Completed</span>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>Quick Access</h3>
+
+    <div class="row">
+      <span>💳 UPI</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>📋 Orders</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>👥 Team</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>👤 My Account</span>
+      <span>›</span>
+    </div>
+
+  </div>
+
+  <nav>
+
+    <button class="active">
+      🏠<br>Home
+    </button>
+
+    <button>
+      📋<br>Orders
+    </button>
+
+    <button>
+      💳<br>UPI
+    </button>
+
+    <button>
+      👥<br>Team
+    </button>
+
+    <button>
+      👤<br>My
+    </button>
+
+  </nav>
+
+</div>
+
+</body>
+</html>
