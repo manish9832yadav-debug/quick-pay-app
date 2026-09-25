@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quick Pay - Buy</title>
+<title>Quick Pay - Deposit INR</title>
 
 <style>
 *{box-sizing:border-box}
@@ -38,7 +38,7 @@ body{
 }
 
 .title{
-  font-size:24px;
+  font-size:23px;
   font-weight:bold;
 }
 
@@ -46,52 +46,81 @@ body{
   background:white;
   padding:20px;
   border-radius:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
   margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
-.rate{
+.amount{
+  font-size:30px;
+  font-weight:bold;
   color:#1769ff;
-  font-weight:bold;
+  margin:8px 0 20px;
 }
 
-label{
-  display:block;
-  margin:18px 0 8px;
-  font-weight:bold;
-}
-
-input,select{
-  width:100%;
+.bank{
+  background:#f4f7ff;
   padding:15px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-}
-
-.summary{
-  background:#f5f7fb;
-  padding:15px;
-  border-radius:14px;
-  margin-top:20px;
+  border-radius:15px;
 }
 
 .row{
   display:flex;
   justify-content:space-between;
-  padding:8px 0;
+  gap:15px;
+  padding:10px 0;
+  border-bottom:1px solid #e5e7eb;
 }
 
-.confirm{
+.row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  color:#777;
+}
+
+.value{
+  font-weight:bold;
+  text-align:right;
+  word-break:break-all;
+}
+
+.copy{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:0;
+  border-radius:11px;
+  background:#1769ff;
+  color:white;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  margin-top:8px;
+}
+
+.submit{
   width:100%;
   padding:16px;
-  margin-top:20px;
+  margin-top:18px;
   border:0;
-  border-radius:13px;
+  border-radius:12px;
   background:#1769ff;
   color:white;
   font-size:17px;
   font-weight:bold;
+}
+
+.note{
+  color:#777;
+  font-size:13px;
+  line-height:1.5;
 }
 </style>
 </head>
@@ -102,53 +131,67 @@ input,select{
 
   <div class="top">
     <button class="back" onclick="history.back()">‹</button>
-    <div class="title">Buy USDT</div>
+    <div class="title">Deposit INR</div>
   </div>
 
   <div class="card">
 
-    <div>
-      Current Rate
-      <div class="rate">₹90.00 / USDT</div>
+    <div>Amount to Pay</div>
+
+    <div class="amount" id="amount">
+      ₹1,000.00
     </div>
 
-    <label>USDT Amount</label>
+    <div class="bank">
+
+      <div class="row">
+        <span class="label">Bank Name</span>
+        <span class="value">YOUR BANK</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Account Holder</span>
+        <span class="value">YOUR NAME</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Account Number</span>
+        <span class="value">XXXXXXXXXXXX</span>
+      </div>
+
+      <div class="row">
+        <span class="label">IFSC</span>
+        <span class="value">XXXXXXXXXXX</span>
+      </div>
+
+    </div>
+
+    <button class="copy" onclick="copyDetails()">
+      Copy Bank Details
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>After Payment</h3>
+
+    <p class="note">
+      Bank transfer complete karne ke baad apna UTR /
+      transaction reference number yahan submit karein.
+    </p>
+
+    <label>UTR / Transaction ID</label>
 
     <input
-      id="usdt"
-      type="number"
-      placeholder="Enter USDT amount"
-      oninput="calculate()"
+      id="utr"
+      type="text"
+      placeholder="Enter UTR / transaction ID"
     >
 
-    <label>Payment Method</label>
-
-    <select>
-      <option>UPI</option>
-      <option>Demo Wallet</option>
-    </select>
-
-    <div class="summary">
-
-      <div class="row">
-        <span>USDT</span>
-        <b id="usdtShow">0</b>
-      </div>
-
-      <div class="row">
-        <span>Rate</span>
-        <b>₹90.00</b>
-      </div>
-
-      <div class="row">
-        <span>Total</span>
-        <b id="total">₹0.00</b>
-      </div>
-
-    </div>
-
-    <button class="confirm" onclick="confirmBuy()">
-      Confirm Buy
+    <button class="submit" onclick="submitPayment()">
+      Submit Payment
     </button>
 
   </div>
@@ -157,35 +200,37 @@ input,select{
 
 <script>
 
-function calculate(){
+function copyDetails(){
 
-  let usdt =
-    Number(document.getElementById("usdt").value) || 0;
+  const details =
+    "Bank: YOUR BANK\n" +
+    "Account Holder: YOUR NAME\n" +
+    "Account Number: XXXXXXXXXXXX\n" +
+    "IFSC: XXXXXXXXXXX";
 
-  let total = usdt * 90;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(details);
+  }
 
-  document.getElementById("usdtShow").innerText =
-    usdt.toFixed(2);
-
-  document.getElementById("total").innerText =
-    "₹" + total.toFixed(2);
+  alert("Bank details copied");
 }
 
-function confirmBuy(){
+function submitPayment(){
 
-  let usdt =
-    Number(document.getElementById("usdt").value) || 0;
+  const utr =
+    document.getElementById("utr").value.trim();
 
-  if(usdt <= 0){
-    alert("Please enter USDT amount");
+  if(!utr){
+    alert("Please enter UTR / Transaction ID");
     return;
   }
 
   alert(
-    "Demo Buy Order Created\n" +
-    usdt.toFixed(2) +
-    " USDT"
+    "Payment submitted for verification.\n\n" +
+    "Status: Pending"
   );
+
+  window.location.href="orders.html";
 }
 
 </script>
